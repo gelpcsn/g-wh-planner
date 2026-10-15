@@ -1,5 +1,4 @@
-// ... existing code ...
-const { getStore } = require("@netlify/blob");
+const { connectLambda, getStore } = require("@netlify/blobs");
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -19,6 +18,9 @@ exports.handler = async (event) => {
       body: ""
     };
   }
+
+  // Blobs needs the Lambda-style event to pick up its credentials
+  connectLambda(event);
 
   // Initialize the specific blob store for our shipments
   const store = getStore("gwh-planner-store");
