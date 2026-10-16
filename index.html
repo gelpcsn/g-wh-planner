@@ -3,34 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G WH Planner - Red Noir</title>
+    <title>G WH Planner - Minimalist SaaS</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        heading: ['Manrope', 'sans-serif'],
+                        heading: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        rednoir: {
-                            DEFAULT: '#ef233c',
-                            dark: '#ba1826',
-                            glow: 'rgba(239, 35, 60, 0.5)'
-                        },
-                        zinc: {
-                            850: '#1f1f22',
-                            900: '#18181b',
-                            950: '#0a0a0a',
+                        saas: {
+                            bg: '#F3F4F2',
+                            surface: '#FFFFFF',
+                            text: '#111111',
+                            muted: '#858585',
+                            border: '#EAECE9',
+                            accent: '#65F49A',
+                            soft: '#DDFCE7',
+                            control: '#F6F7F6'
                         }
                     }
                 }
@@ -41,22 +40,21 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #000000; 
-            color: #e4e4e7;
-            background-image: radial-gradient(circle at top, #111 0%, #000 100%);
-            background-attachment: fixed;
+            background-color: #F3F4F2; 
+            color: #111111;
+            -webkit-font-smoothing: antialiased;
         }
         
-        h1, h2, h3, h4, h5, h6, .font-heading {
-            font-family: 'Manrope', sans-serif;
-        }
-        
-        /* Custom Dark Mode Scrollbar */
+        /* Custom Light Mode Scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #ef233c; }
+        ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
         
+        /* Hide scrollbar for top nav */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
         /* Animations */
         .fade-in { animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         @keyframes fadeIn { 
@@ -64,84 +62,105 @@
             to { opacity: 1; transform: translateY(0); } 
         }
 
-        .stagger-1 { animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.05s both; }
-        .stagger-2 { animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both; }
-        .stagger-3 { animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.15s both; }
+        .stagger-1 { animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.05s both; }
+        .stagger-2 { animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both; }
+        .stagger-3 { animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.15s both; }
         
-        /* Bento Cards & Modals */
+        /* Minimalist Bento Cards & Modals */
         .bento-card {
-            background-color: #111111;
-            border: 1px solid #27272a;
-            border-radius: 1rem;
+            background-color: #FFFFFF;
+            border: 1px solid #EAECE9;
+            border-radius: 16px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
         }
         .bento-card:hover {
-            border-color: rgba(239, 35, 60, 0.3);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border-color: #D1D5DB;
         }
 
         .modal-overlay { 
-            background-color: rgba(0, 0, 0, 0.85); 
+            background-color: rgba(255, 255, 255, 0.85); 
             backdrop-filter: blur(8px); 
         }
 
-        /* Red Noir Premium Buttons */
-        .btn-red-noir {
-            background: linear-gradient(135deg, #ef233c 0%, #ba1826 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            box-shadow: 0 4px 15px rgba(239, 35, 60, 0.2);
-            transition: all 0.3s ease;
+        /* SaaS Buttons */
+        .btn-primary {
+            background: #111111;
+            border: 1px solid #000000;
+            color: #FFFFFF;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
         }
-        .btn-red-noir:hover {
-            box-shadow: 0 0 20px rgba(239, 35, 60, 0.6);
+        .btn-primary:hover {
+            background: #222222;
             transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: #F6F7F6;
+            border: 1px solid #EAECE9;
+            color: #111111;
+            transition: all 0.2s ease;
+        }
+        .btn-secondary:hover {
+            background: #EAECE9;
+            border-color: #D1D5DB;
         }
 
-        /* Input overrides for dark theme */
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-            opacity: 0.5;
-            cursor: pointer;
-        }
-        input[type="date"]::-webkit-calendar-picker-indicator:hover {
-            opacity: 0.8;
+        /* Decorative Background Blob */
+        .bg-blob {
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(221, 252, 231, 0.8) 0%, rgba(243, 244, 242, 0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
         }
     </style>
 </head>
-<body class="h-screen overflow-hidden flex text-zinc-300 selection:bg-rednoir selection:text-white antialiased">
+<body class="h-screen overflow-hidden flex text-saas-text selection:bg-saas-accent selection:text-saas-text">
 
-    <div id="app" class="flex h-full w-full">
-        <!-- Sidebar Navigation (Injected by JS) -->
-        <aside id="sidebar" class="w-64 bg-zinc-950 border-r border-zinc-800 flex flex-col transition-transform duration-300 absolute md:relative z-40 h-full -translate-x-full md:translate-x-0"></aside>
+    <div id="app" class="flex flex-col h-full w-full bg-saas-bg relative">
+        <!-- Decorative Floating Panel -->
+        <div class="bg-blob"></div>
+
+        <!-- Mobile Header -->
+        <header class="md:hidden bg-white border-b border-saas-border px-4 py-3 flex justify-between items-center z-30 shadow-sm relative">
+            <div class="flex items-center gap-2 font-bold text-saas-text tracking-tight">
+                <div class="w-8 h-8 rounded bg-saas-text flex items-center justify-center text-saas-accent shadow-sm">
+                    <i data-lucide="box" class="w-4 h-4"></i>
+                </div>
+                Planner
+            </div>
+            <button onclick="app.toggleMobileMenu()" class="text-saas-muted hover:text-saas-text transition-colors">
+                <i data-lucide="menu"></i>
+            </button>
+        </header>
+
+        <!-- Sidebar Navigation transformed to Top Navigation (Injected by JS) -->
+        <aside id="sidebar" class="w-64 md:w-full bg-white md:border-b border-r md:border-r-0 border-saas-border flex flex-col md:flex-row md:items-center transition-transform duration-300 absolute md:relative z-40 h-full md:h-16 -translate-x-full md:translate-x-0 shadow-sm md:shadow-none"></aside>
         
         <!-- Main Content Area -->
-        <div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
-            <!-- Mobile Header -->
-            <header class="md:hidden bg-zinc-950 border-b border-zinc-800 px-4 py-3 flex justify-between items-center z-30 shadow-sm">
-                <div class="flex items-center gap-2 font-heading font-bold text-white">
-                    <i data-lucide="package" class="text-rednoir"></i>
-                    G WH Planner
-                </div>
-                <button onclick="app.toggleMobileMenu()" class="text-zinc-400 hover:text-white transition-colors">
-                    <i data-lucide="menu"></i>
-                </button>
-            </header>
-
-            <!-- Dynamic View Container -->
+        <div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden relative z-10">
             <main id="main-content" class="flex-1 overflow-y-auto p-4 md:p-8 relative"></main>
         </div>
         
         <!-- Mobile Overlay -->
-        <div id="mobile-overlay" onclick="app.toggleMobileMenu()" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-30 md:hidden transition-opacity"></div>
+        <div id="mobile-overlay" onclick="app.toggleMobileMenu()" class="hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-30 md:hidden transition-opacity"></div>
     </div>
 
     <!-- Modals -->
-    <div id="modal-container" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div id="modal-container" class="hidden fixed inset-0 z-[100] overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 modal-overlay transition-opacity" aria-hidden="true" onclick="app.closeModal()"></div>
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            <div id="modal-content" class="inline-block align-bottom bg-[#0a0a0a] rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl w-full border border-zinc-800 ring-1 ring-white/5">
+            <div id="modal-content" class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl w-full border border-saas-border">
                 <!-- Modal content injected here -->
             </div>
         </div>
@@ -152,10 +171,7 @@
         const API_ENDPOINT = '/.netlify/functions/storage';
 
         async function syncData(data) {
-            // Save to LocalStorage instantly as backup/offline mode
             localStorage.setItem('g_wh_planner_data', JSON.stringify(data));
-            
-            // Sync to Netlify Blob if the backend endpoint is available
             try {
                 await fetch(API_ENDPOINT, {
                     method: 'POST',
@@ -168,7 +184,6 @@
         }
 
         async function initStorage() {
-            // Load initial data
             try {
                 const response = await fetch(API_ENDPOINT);
                 if (response.ok) {
@@ -185,12 +200,12 @@
             render();
         }
 
-        // --- CONSTANTS & CONFIG (Dark Mode Adapted) ---
+        // --- CONSTANTS & CONFIG (Light Theme Adapted) ---
         const WAREHOUSES = [
-            { id: 'NJ', name: 'NJ Warehouse', colors: { bg: 'bg-blue-950/30', text: 'text-blue-400', border: 'border-blue-900/50', tag: 'bg-blue-950/40 text-blue-400 border border-blue-800/50' } },
-            { id: 'GA', name: 'GA Warehouse', colors: { bg: 'bg-emerald-950/30', text: 'text-emerald-400', border: 'border-emerald-900/50', tag: 'bg-emerald-950/40 text-emerald-400 border border-emerald-800/50' } },
-            { id: 'TX', name: 'TX Warehouse', colors: { bg: 'bg-orange-950/30', text: 'text-orange-400', border: 'border-orange-900/50', tag: 'bg-orange-950/40 text-orange-400 border border-orange-800/50' } },
-            { id: 'CA', name: 'CA Warehouse', colors: { bg: 'bg-purple-950/30', text: 'text-purple-400', border: 'border-purple-900/50', tag: 'bg-purple-950/40 text-purple-400 border border-purple-800/50' } },
+            { id: 'NJ', name: 'NJ Warehouse', colors: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', tag: 'bg-blue-50 text-blue-700 border border-blue-200' } },
+            { id: 'GA', name: 'GA Warehouse', colors: { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', tag: 'bg-emerald-50 text-emerald-700 border border-emerald-200' } },
+            { id: 'TX', name: 'TX Warehouse', colors: { bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200', tag: 'bg-orange-50 text-orange-700 border border-orange-200' } },
+            { id: 'CA', name: 'CA Warehouse', colors: { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200', tag: 'bg-purple-50 text-purple-700 border border-purple-200' } },
         ];
 
         const DESTINATIONS = ['JEBEL ALI', 'AJMAN', 'KHOR FAKKAN', 'UMM QASR', 'AQABA, JORDAN', 'MERSIN, TURKEY', 'BINGAZI, LIBYA', 'AL KHUMS, LIBYA', 'POTI, GEORGIA', 'COTONOU, BENIN', 'LOME, TOGO', 'TEMA, GHANA', 'TINCAN, NIGERIA', 'BEIRUT, LEBANON', 'OTHER'];
@@ -224,7 +239,7 @@
 
         // --- STATE MANAGEMENT ---
         const state = {
-            shipments: [], // Now populated instantly from the Cloud Database
+            shipments: [], 
             currentView: 'DASHBOARD',
             isMobileMenuOpen: false,
             tableState: { searchTerm: '', sortBy: 'siDate', sortAsc: true },
@@ -257,17 +272,17 @@
             },
             deleteShipment: (id) => {
                 const html = `
-                    <div class="px-5 pt-5 pb-4 sm:p-6 sm:pb-4 border-b border-zinc-800 flex justify-between items-center bg-zinc-900/50">
-                        <h3 class="text-lg leading-6 font-heading font-bold text-red-500 flex items-center gap-2">
+                    <div class="px-5 pt-5 pb-4 sm:p-6 sm:pb-4 border-b border-saas-border flex justify-between items-center bg-saas-control/50">
+                        <h3 class="text-lg leading-6 font-bold text-red-600 flex items-center gap-2">
                             <i data-lucide="alert-triangle" class="text-red-500"></i> Confirm Deletion
                         </h3>
-                        <button onclick="app.closeModal()" class="text-zinc-500 hover:text-zinc-300 transition-colors"><i data-lucide="x"></i></button>
+                        <button onclick="app.closeModal()" class="text-saas-muted hover:text-saas-text transition-colors"><i data-lucide="x"></i></button>
                     </div>
-                    <div class="px-5 py-5 sm:p-6 bg-zinc-950 space-y-5">
-                        <p class="text-zinc-300">Are you sure you want to permanently delete this record? This action cannot be undone.</p>
-                        <div class="flex justify-end gap-3 pt-4 border-t border-zinc-800 mt-4">
-                            <button onclick="app.closeModal()" class="px-4 py-2 text-sm font-medium text-zinc-300 bg-zinc-900 border border-zinc-700 rounded-lg shadow-sm hover:bg-zinc-800 transition-colors">Cancel</button>
-                            <button onclick="app.executeDelete('${id}')" class="px-4 py-2 text-sm font-medium text-white bg-rednoir rounded-lg shadow-sm hover:bg-red-700 flex items-center gap-2 transition-all shadow-[0_0_15px_rgba(239,35,60,0.3)] hover:shadow-[0_0_20px_rgba(239,35,60,0.5)] border border-red-500/50">
+                    <div class="px-5 py-5 sm:p-6 bg-white space-y-5">
+                        <p class="text-saas-muted text-sm">Are you sure you want to permanently delete this record? This action cannot be undone.</p>
+                        <div class="flex justify-end gap-3 pt-4 border-t border-saas-border mt-4">
+                            <button onclick="app.closeModal()" class="btn-secondary px-4 py-2 text-sm font-medium rounded-xl shadow-sm">Cancel</button>
+                            <button onclick="app.executeDelete('${id}')" class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-xl shadow-sm hover:bg-red-700 flex items-center gap-2 transition-all">
                                 <i data-lucide="trash-2" class="w-4 h-4"></i> Delete Record
                             </button>
                         </div>
@@ -300,16 +315,16 @@
             exportCSV: (records, filename) => {
                 if (records.length === 0) {
                     const html = `
-                        <div class="px-5 pt-5 pb-4 sm:p-6 sm:pb-4 border-b border-zinc-800 flex justify-between items-center bg-zinc-900/50">
-                            <h3 class="text-lg leading-6 font-heading font-bold text-white flex items-center gap-2">
-                                <i data-lucide="info" class="text-rednoir"></i> Export Notice
+                        <div class="px-5 pt-5 pb-4 sm:p-6 sm:pb-4 border-b border-saas-border flex justify-between items-center bg-saas-control/50">
+                            <h3 class="text-lg leading-6 font-bold text-saas-text flex items-center gap-2">
+                                <i data-lucide="info" class="text-saas-muted"></i> Export Notice
                             </h3>
-                            <button onclick="app.closeModal()" class="text-zinc-500 hover:text-zinc-300"><i data-lucide="x"></i></button>
+                            <button onclick="app.closeModal()" class="text-saas-muted hover:text-saas-text"><i data-lucide="x"></i></button>
                         </div>
-                        <div class="px-5 py-5 sm:p-6 bg-zinc-950">
-                            <p class="text-zinc-400">No records to export for this selection.</p>
-                            <div class="flex justify-end pt-4 mt-4 border-t border-zinc-800">
-                                <button onclick="app.closeModal()" class="px-4 py-2 text-sm font-medium text-white bg-zinc-800 border border-zinc-700 rounded-lg shadow-sm hover:bg-zinc-700 transition-colors">Close</button>
+                        <div class="px-5 py-5 sm:p-6 bg-white">
+                            <p class="text-saas-muted text-sm">No records to export for this selection.</p>
+                            <div class="flex justify-end pt-4 mt-4 border-t border-saas-border">
+                                <button onclick="app.closeModal()" class="btn-secondary px-4 py-2 text-sm font-medium rounded-xl shadow-sm">Close</button>
                             </div>
                         </div>
                     `;
@@ -429,86 +444,78 @@
                 const title = id ? 'Edit Shipment' : 'New Shipment';
 
                 const html = `
-                    <div class="px-5 pt-5 pb-4 sm:p-6 sm:pb-4 border-b border-zinc-800 flex justify-between items-center bg-zinc-900/50">
-                        <h3 class="text-lg leading-6 font-heading font-bold text-white flex items-center gap-2">
-                            <i data-lucide="${id ? 'edit-2' : 'plus-circle'}" class="text-rednoir"></i> ${title}
+                    <div class="px-6 pt-6 pb-4 sm:p-6 sm:pb-4 border-b border-saas-border flex justify-between items-center bg-saas-control/50">
+                        <h3 class="text-lg leading-6 font-bold text-saas-text flex items-center gap-2">
+                            <i data-lucide="${id ? 'edit-2' : 'plus-circle'}" class="text-saas-text"></i> ${title}
                         </h3>
-                        <button onclick="app.closeModal()" class="text-zinc-500 hover:text-white transition-colors"><i data-lucide="x"></i></button>
+                        <button onclick="app.closeModal()" class="text-saas-muted hover:text-saas-text transition-colors"><i data-lucide="x"></i></button>
                     </div>
-                    <form onsubmit="app.submitForm(event)" class="px-5 py-5 sm:p-6 bg-[#050505] space-y-5">
+                    <form onsubmit="app.submitForm(event)" class="px-6 py-5 sm:p-6 bg-white space-y-5">
                         <input type="hidden" name="id" value="${s.id || ''}">
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <!-- Warehouse -->
                             <div class="${fixedWh ? 'hidden' : ''}">
-                                <label class="block text-sm font-semibold text-zinc-400 mb-1">Warehouse</label>
-                                <select name="warehouse" class="w-full rounded-lg border-zinc-800 bg-zinc-950 text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 transition-colors" ${fixedWh ? 'disabled' : 'required'}>
+                                <label class="block text-xs font-semibold text-saas-muted mb-1.5 uppercase tracking-wide">Warehouse</label>
+                                <select name="warehouse" class="w-full rounded-xl border border-saas-border bg-saas-control text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 transition-colors outline-none" ${fixedWh ? 'disabled' : 'required'}>
                                     ${WAREHOUSES.map(w => `<option value="${w.id}" ${whVal === w.id ? 'selected' : ''}>${w.name}</option>`).join('')}
                                 </select>
                                 ${fixedWh ? `<input type="hidden" name="warehouse" value="${fixedWh}">` : ''}
                             </div>
 
-                            <!-- Destination -->
                             <div>
-                                <label class="block text-sm font-semibold text-zinc-400 mb-1">Destination</label>
-                                <select name="destination" onchange="app.toggleCustomInput(this, 'customDestWrapper')" class="w-full rounded-lg border-zinc-800 bg-zinc-950 text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 transition-colors" required>
+                                <label class="block text-xs font-semibold text-saas-muted mb-1.5 uppercase tracking-wide">Destination</label>
+                                <select name="destination" onchange="app.toggleCustomInput(this, 'customDestWrapper')" class="w-full rounded-xl border border-saas-border bg-saas-control text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 transition-colors outline-none" required>
                                     ${DESTINATIONS.map(d => `<option value="${d}" ${destVal === d ? 'selected' : ''}>${d}</option>`).join('')}
                                 </select>
                                 <div id="customDestWrapper" class="mt-2 ${isDestOther ? '' : 'hidden'}">
-                                    <input type="text" name="customDestination" value="${isDestOther ? escapeHTML(s.destination) : ''}" placeholder="Enter Custom Destination" class="w-full rounded-lg border-zinc-800 bg-black text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 placeholder-zinc-700 transition-colors">
+                                    <input type="text" name="customDestination" value="${isDestOther ? escapeHTML(s.destination) : ''}" placeholder="Enter Custom Destination" class="w-full rounded-xl border border-saas-border bg-white text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 placeholder-saas-muted transition-colors outline-none">
                                 </div>
                             </div>
 
-                            <!-- SI Date -->
                             <div>
-                                <label class="block text-sm font-semibold text-zinc-400 mb-1">S.I. Date (Deadline)</label>
-                                <input type="date" name="siDate" value="${s.siDate || todayStr()}" class="w-full rounded-lg border-zinc-800 bg-zinc-950 text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 transition-colors" required>
+                                <label class="block text-xs font-semibold text-saas-muted mb-1.5 uppercase tracking-wide">S.I. Date (Deadline)</label>
+                                <input type="date" name="siDate" value="${s.siDate || todayStr()}" class="w-full rounded-xl border border-saas-border bg-saas-control text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 transition-colors outline-none" required>
                             </div>
 
-                            <!-- Vessel -->
                             <div class="md:col-span-2">
-                                <label class="block text-sm font-semibold text-zinc-400 mb-1">Vessel Name</label>
-                                <input type="text" name="vessel" value="${escapeHTML(s.vessel)}" placeholder="e.g. MSC ISABELLA" class="w-full rounded-lg border-zinc-800 bg-zinc-950 text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 placeholder-zinc-700 transition-colors" required>
+                                <label class="block text-xs font-semibold text-saas-muted mb-1.5 uppercase tracking-wide">Vessel Name</label>
+                                <input type="text" name="vessel" value="${escapeHTML(s.vessel)}" placeholder="e.g. MSC ISABELLA" class="w-full rounded-xl border border-saas-border bg-saas-control text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 placeholder-saas-muted transition-colors outline-none" required>
                             </div>
 
-                            <!-- Shipping Line -->
                             <div>
-                                <label class="block text-sm font-semibold text-zinc-400 mb-1">Shipping Line</label>
-                                <select name="shippingLine" onchange="app.toggleCustomInput(this, 'customLineWrapper')" class="w-full rounded-lg border-zinc-800 bg-zinc-950 text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 transition-colors" required>
+                                <label class="block text-xs font-semibold text-saas-muted mb-1.5 uppercase tracking-wide">Shipping Line</label>
+                                <select name="shippingLine" onchange="app.toggleCustomInput(this, 'customLineWrapper')" class="w-full rounded-xl border border-saas-border bg-saas-control text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 transition-colors outline-none" required>
                                     ${SHIPPING_LINES.map(l => `<option value="${l}" ${lineVal === l ? 'selected' : ''}>${l}</option>`).join('')}
                                 </select>
                                 <div id="customLineWrapper" class="mt-2 ${isLineOther ? '' : 'hidden'}">
-                                    <input type="text" name="customShippingLine" value="${isLineOther ? escapeHTML(s.shippingLine) : ''}" placeholder="Enter Custom Line" class="w-full rounded-lg border-zinc-800 bg-black text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 placeholder-zinc-700 transition-colors">
+                                    <input type="text" name="customShippingLine" value="${isLineOther ? escapeHTML(s.shippingLine) : ''}" placeholder="Enter Custom Line" class="w-full rounded-xl border border-saas-border bg-white text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 placeholder-saas-muted transition-colors outline-none">
                                 </div>
                             </div>
 
-                            <!-- Container Size -->
                             <div>
-                                <label class="block text-sm font-semibold text-zinc-400 mb-1">Container Size</label>
-                                <select name="containerSize" onchange="app.toggleCustomInput(this, 'customSizeWrapper')" class="w-full rounded-lg border-zinc-800 bg-zinc-950 text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 transition-colors" required>
+                                <label class="block text-xs font-semibold text-saas-muted mb-1.5 uppercase tracking-wide">Container Size</label>
+                                <select name="containerSize" onchange="app.toggleCustomInput(this, 'customSizeWrapper')" class="w-full rounded-xl border border-saas-border bg-saas-control text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 transition-colors outline-none" required>
                                     ${CONTAINER_SIZES.map(sz => `<option value="${sz}" ${sizeVal === sz ? 'selected' : ''}>${sz}</option>`).join('')}
                                 </select>
                                 <div id="customSizeWrapper" class="mt-2 ${isSizeOther ? '' : 'hidden'}">
-                                    <input type="text" name="customContainerSize" value="${isSizeOther ? escapeHTML(s.containerSize) : ''}" placeholder="Enter Custom Size" class="w-full rounded-lg border-zinc-800 bg-black text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 placeholder-zinc-700 transition-colors">
+                                    <input type="text" name="customContainerSize" value="${isSizeOther ? escapeHTML(s.containerSize) : ''}" placeholder="Enter Custom Size" class="w-full rounded-xl border border-saas-border bg-white text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 placeholder-saas-muted transition-colors outline-none">
                                 </div>
                             </div>
 
-                            <!-- Count -->
                             <div>
-                                <label class="block text-sm font-semibold text-zinc-400 mb-1">Container Count</label>
-                                <input type="number" name="containerCount" value="${s.containerCount || 1}" min="1" step="1" class="w-full rounded-lg border-zinc-800 bg-zinc-950 text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 transition-colors" required>
+                                <label class="block text-xs font-semibold text-saas-muted mb-1.5 uppercase tracking-wide">Container Count</label>
+                                <input type="number" name="containerCount" value="${s.containerCount || 1}" min="1" step="1" class="w-full rounded-xl border border-saas-border bg-saas-control text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 transition-colors outline-none" required>
                             </div>
                         </div>
 
-                        <!-- Notes -->
                         <div>
-                            <label class="block text-sm font-semibold text-zinc-400 mb-1">Notes (Optional)</label>
-                            <textarea name="notes" rows="2" placeholder="Special instructions..." class="w-full rounded-lg border-zinc-800 bg-zinc-950 text-white focus:border-rednoir focus:ring-1 focus:ring-rednoir/50 px-3 py-2.5 placeholder-zinc-700 transition-colors">${escapeHTML(s.notes)}</textarea>
+                            <label class="block text-xs font-semibold text-saas-muted mb-1.5 uppercase tracking-wide">Notes (Optional)</label>
+                            <textarea name="notes" rows="2" placeholder="Special instructions..." class="w-full rounded-xl border border-saas-border bg-saas-control text-saas-text focus:border-saas-text focus:ring-1 focus:ring-saas-text px-3 py-2.5 placeholder-saas-muted transition-colors outline-none">${escapeHTML(s.notes)}</textarea>
                         </div>
 
-                        <div class="flex justify-end gap-3 pt-5 border-t border-zinc-800 mt-2">
-                            <button type="button" onclick="app.closeModal()" class="px-4 py-2.5 text-sm font-medium text-zinc-300 bg-zinc-900 border border-zinc-800 rounded-lg shadow-sm hover:bg-zinc-800 transition-colors">Cancel</button>
-                            <button type="submit" class="btn-red-noir px-5 py-2.5 text-sm font-medium rounded-lg flex items-center gap-2">
+                        <div class="flex justify-end gap-3 pt-5 border-t border-saas-border mt-2">
+                            <button type="button" onclick="app.closeModal()" class="btn-secondary px-5 py-2.5 text-sm font-medium rounded-xl shadow-sm">Cancel</button>
+                            <button type="submit" class="btn-primary px-6 py-2.5 text-sm font-medium rounded-xl flex items-center gap-2">
                                 <i data-lucide="save" class="w-4 h-4"></i> Save Record
                             </button>
                         </div>
@@ -524,6 +531,7 @@
                 }
                 const total = filtered.reduce((acc, s) => acc + s.containerCount, 0);
 
+                // Added explicit enlargement inline style as requested
                 const html = `
                     <style>
                         #modal-content {
@@ -531,17 +539,17 @@
                             width: 95vw !important;
                         }
                     </style>
-                    <div class="px-5 pt-5 pb-4 border-b border-zinc-800 flex justify-between items-center bg-zinc-900/50">
-                        <h3 class="text-lg leading-6 font-heading font-bold text-white flex items-center gap-2">
-                            <i data-lucide="calendar" class="text-rednoir"></i> Workload for ${formatDisplayDate(dateStr)}
+                    <div class="px-6 pt-6 pb-4 border-b border-saas-border flex justify-between items-center bg-saas-control/50">
+                        <h3 class="text-lg leading-6 font-bold text-saas-text flex items-center gap-2">
+                            <i data-lucide="calendar" class="text-saas-text"></i> Workload for ${formatDisplayDate(dateStr)}
                         </h3>
-                        <button onclick="app.closeModal()" class="text-zinc-500 hover:text-white"><i data-lucide="x"></i></button>
+                        <button onclick="app.closeModal()" class="text-saas-muted hover:text-saas-text"><i data-lucide="x"></i></button>
                     </div>
-                    <div class="p-5 bg-[#050505] space-y-5">
-                        <div class="flex gap-4 p-5 bento-card justify-center">
+                    <div class="p-6 bg-white space-y-6">
+                        <div class="flex gap-4 p-6 bento-card justify-center">
                             <div class="text-center">
-                                <p class="text-xs text-zinc-500 uppercase font-semibold tracking-wider">Total Containers Due</p>
-                                <p class="text-4xl font-heading font-bold text-white mt-1">${total}</p>
+                                <p class="text-xs text-saas-muted uppercase font-semibold tracking-wider">Total Containers Due</p>
+                                <p class="text-4xl font-bold text-saas-text mt-1">${total}</p>
                             </div>
                         </div>
                         ${buildTableHTML(filtered, state.calendarViewMode !== 'COMBINED')}
@@ -552,53 +560,51 @@
         };
 
         // --- RENDERERS ---
-
         function renderSidebar() {
             const navItems = [
                 { id: 'DASHBOARD', label: 'Dashboard', icon: 'home' },
                 { type: 'divider' },
                 ...WAREHOUSES.map(w => ({ id: `WH_${w.id}`, label: w.name, icon: 'map-pin' })),
                 { type: 'divider' },
-                { id: 'CALENDAR', label: 'Workload Calendar', icon: 'calendar-days' },
-                { id: 'SI_MONITOR', label: 'S.I. Monitoring', icon: 'clock' },
+                { id: 'CALENDAR', label: 'Calendar', icon: 'calendar-days' },
+                { id: 'SI_MONITOR', label: 'S.I. Monitor', icon: 'clock' },
                 { type: 'divider' },
-                { id: 'ARCHIVE', label: 'Historical Archive', icon: 'archive' },
-                { id: 'EXPORT', label: 'Export & Reports', icon: 'download' },
+                { id: 'ARCHIVE', label: 'Archive', icon: 'archive' },
+                { id: 'EXPORT', label: 'Reports', icon: 'download' },
             ];
 
             let html = `
-                <div class="p-5 flex items-center gap-3 border-b border-zinc-800 bg-[#050505]">
-                    <div class="bg-gradient-to-br from-rednoir to-rednoir-dark p-2 rounded-xl text-white shadow-[0_0_15px_rgba(239,35,60,0.3)]">
-                        <i data-lucide="package" class="w-6 h-6"></i>
+                <div class="hidden md:flex items-center gap-3 pr-8 border-r border-saas-border h-full pl-6">
+                    <div class="w-8 h-8 rounded bg-saas-text flex items-center justify-center text-saas-accent shadow-sm">
+                        <i data-lucide="box" class="w-4 h-4"></i>
                     </div>
-                    <span class="font-heading font-bold text-xl text-white leading-tight tracking-wide">G WH<br/>Planner</span>
+                    <span class="font-bold text-lg text-saas-text tracking-tight">Planner</span>
                 </div>
-                <div class="flex-1 overflow-y-auto py-5">
-                    <nav class="space-y-1.5 px-3">
+                
+                <nav class="flex-1 flex flex-col md:flex-row md:items-center gap-2 p-4 md:p-0 md:px-6 h-full md:overflow-x-auto no-scrollbar bg-white">
             `;
 
             navItems.forEach((item, idx) => {
                 if (item.type === 'divider') {
-                    html += `<div class="h-px bg-zinc-800/50 my-4 mx-2"></div>`;
+                    html += `<div class="hidden md:block w-px h-6 bg-saas-border mx-2"></div><div class="md:hidden h-px bg-saas-border my-2 mx-2"></div>`;
                     return;
                 }
                 const isActive = state.currentView === item.id;
                 const activeClass = isActive 
-                    ? 'bg-rednoir/10 text-rednoir font-semibold border border-rednoir/20 shadow-[0_0_15px_rgba(239,35,60,0.1)]' 
-                    : 'text-zinc-400 hover:bg-zinc-900 hover:text-white font-medium border border-transparent transition-colors';
+                    ? 'bg-saas-text text-white shadow-md' 
+                    : 'text-saas-muted hover:bg-saas-control hover:text-saas-text font-medium';
                 html += `
-                    <button onclick="app.navigate('${item.id}')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-sm ${activeClass}">
-                        <i data-lucide="${item.icon}" class="w-5 h-5 ${isActive ? 'text-rednoir' : 'text-zinc-500'}"></i>
+                    <button onclick="app.navigate('${item.id}')" class="whitespace-nowrap flex items-center gap-2 px-3.5 py-2.5 md:py-2 rounded-xl transition-all text-sm ${activeClass}">
+                        <i data-lucide="${item.icon}" class="w-4 h-4"></i>
                         ${item.label}
                     </button>
                 `;
             });
 
             html += `
-                    </nav>
-                </div>
-                <div class="p-4 border-t border-zinc-800 text-xs text-red-500/80 font-medium bg-[#050505] flex items-center shadow-[0_-5px_15px_rgba(239,35,60,0.05)]">
-                    <i data-lucide="cloud" class="w-3 h-3 mr-2 animate-pulse"></i> Cloud Sync Active
+                </nav>
+                <div class="hidden lg:flex items-center px-6 h-full border-l border-saas-border text-xs text-saas-muted font-medium bg-white">
+                    <i data-lucide="cloud" class="w-3 h-3 mr-2 text-saas-accent"></i> Synced
                 </div>
             `;
             document.getElementById('sidebar').innerHTML = html;
@@ -612,7 +618,6 @@
             
             const getWhTotal = (id) => activeShipments.filter(s => s.warehouse === id).reduce((sum, s) => sum + s.containerCount, 0);
 
-            // Warnings
             const warnings = [];
             const pastDue = activeShipments.filter(s => s.siDate && diffDays(s.siDate, today) < 0);
             if (pastDue.length > 0) warnings.push(`${pastDue.length} shipment(s) have past-due S.I. Dates.`);
@@ -631,62 +636,60 @@
             if (collisions.length > 0) warnings.push(`${collisions.length} instances of multiple shipments for the same warehouse on the same S.I. Date.`);
 
             let html = `
-                <div class="space-y-6 stagger-1">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-zinc-800 pb-5 gap-4">
+                <div class="space-y-6 stagger-1 max-w-7xl mx-auto">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end pb-2 gap-4">
                         <div>
-                            <h2 class="text-3xl font-heading font-bold text-white tracking-tight">Global Dashboard</h2>
-                            <p class="text-zinc-400 mt-1 font-medium">Overview of all active S.I. workloads.</p>
+                            <h2 class="text-3xl font-bold text-saas-text tracking-tight">Global Dashboard</h2>
+                            <p class="text-saas-muted mt-1 text-sm font-medium">Overview of all active S.I. workloads.</p>
                         </div>
-                        <button onclick="app.openFormModal()" class="btn-red-noir px-5 py-2.5 rounded-xl font-medium flex items-center gap-2">
-                            <i data-lucide="plus-circle" class="w-5 h-5"></i> New Shipment
+                        <button onclick="app.openFormModal()" class="btn-primary px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
+                            <i data-lucide="plus" class="w-4 h-4"></i> New Shipment
                         </button>
                     </div>
 
                     ${warnings.length > 0 ? `
-                        <div class="bento-card border-rednoir/30 bg-rednoir/5 overflow-hidden stagger-2">
+                        <div class="bento-card border-red-100 bg-red-50/50 overflow-hidden stagger-2">
                             <div class="p-5 flex flex-col gap-2">
-                                <div class="flex items-center gap-2 text-rednoir font-heading font-bold text-lg">
-                                    <i data-lucide="alert-triangle" class="w-5 h-5"></i> Workload Warnings
+                                <div class="flex items-center gap-2 text-red-600 font-bold text-sm">
+                                    <i data-lucide="alert-triangle" class="w-4 h-4"></i> Workload Warnings
                                 </div>
-                                <ul class="list-disc list-inside text-sm text-red-300 space-y-1.5 ml-1">
+                                <ul class="list-disc list-inside text-xs text-red-500 space-y-1 ml-1">
                                     ${warnings.map(w => `<li>${w}</li>`).join('')}
                                 </ul>
                             </div>
                         </div>
                     ` : ''}
 
-                    <!-- Summary Cards -->
                     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5 stagger-2">
                         <div class="bento-card p-6 col-span-2 md:col-span-2 lg:col-span-2 relative overflow-hidden group">
-                            <div class="absolute top-0 right-0 -mt-4 -mr-4 text-zinc-800 opacity-20 group-hover:opacity-30 transition-opacity"><i data-lucide="layers" class="w-40 h-40"></i></div>
                             <div class="relative z-10">
-                                <p class="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2">Total Active Containers</p>
-                                <p class="text-6xl font-heading font-bold text-white">${total}</p>
+                                <p class="text-saas-muted text-[11px] font-bold uppercase tracking-wider mb-2">Total Active Containers</p>
+                                <p class="text-6xl font-bold text-saas-text tracking-tighter">${total}</p>
                             </div>
                         </div>
                         
                         ${WAREHOUSES.map(wh => `
-                            <div class="bento-card p-6 flex flex-col justify-center">
-                                <p class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest mb-2">${wh.id} Load</p>
-                                <p class="text-4xl font-heading font-bold text-white">${getWhTotal(wh.id)}</p>
+                            <div class="bento-card p-6 flex flex-col justify-center border-t-2" style="border-top-color: var(--saas-border)">
+                                <p class="text-saas-muted text-[10px] font-bold uppercase tracking-wider mb-2">${wh.id} Load</p>
+                                <p class="text-4xl font-bold text-saas-text">${getWhTotal(wh.id)}</p>
                             </div>
                         `).join('')}
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 stagger-3">
-                        <div class="bento-card p-6 border-rednoir/20 bg-gradient-to-br from-[#111] to-[#1a0508]">
-                            <p class="text-red-400 text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4"></i> Today's S.I. Deadline</p>
-                            <p class="text-5xl font-heading font-bold text-white">${todaysPulls}</p>
+                        <div class="bento-card p-6 border-l-4 border-l-saas-text bg-white">
+                            <p class="text-saas-text text-[11px] font-bold uppercase tracking-wider mb-2 flex items-center gap-2"><i data-lucide="clock" class="w-3.5 h-3.5"></i> Today's S.I. Deadline</p>
+                            <p class="text-5xl font-bold text-saas-text tracking-tight">${todaysPulls}</p>
                         </div>
                         <div class="bento-card p-6">
-                            <p class="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> Next 7 Days</p>
-                            <p class="text-5xl font-heading font-bold text-white">${upcomingPulls}</p>
+                            <p class="text-saas-muted text-[11px] font-bold uppercase tracking-wider mb-2 flex items-center gap-2"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> Next 7 Days</p>
+                            <p class="text-5xl font-bold text-saas-text tracking-tight">${upcomingPulls}</p>
                         </div>
                     </div>
 
                     <div class="bento-card p-6 stagger-3">
-                        <h3 class="text-lg font-heading font-bold text-white mb-5 flex items-center gap-2">
-                            <i data-lucide="list" class="w-5 h-5 text-zinc-500"></i> Active Schedule
+                        <h3 class="text-base font-bold text-saas-text mb-5 flex items-center gap-2">
+                            Active Schedule
                         </h3>
                         ${buildTableHTML(activeShipments, false)}
                     </div>
@@ -704,38 +707,38 @@
             const upcomingCount = whShipments.filter(s => s.siDate && diffDays(s.siDate, today) > 0 && diffDays(s.siDate, today) <= 7).reduce((sum, s) => sum + s.containerCount, 0);
 
             let html = `
-                <div class="space-y-6 stagger-1">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-zinc-800 pb-5 gap-4">
+                <div class="space-y-6 stagger-1 max-w-7xl mx-auto">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end pb-2 gap-4">
                         <div>
-                            <div class="flex items-center gap-4 mb-1">
-                                <div class="w-12 h-12 rounded-xl flex items-center justify-center ${wh.colors.bg} ${wh.colors.text} font-heading font-bold text-xl border ${wh.colors.border}">${wh.id}</div>
-                                <h2 class="text-3xl font-heading font-bold text-white tracking-tight">${wh.name}</h2>
+                            <div class="flex items-center gap-3 mb-1">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center ${wh.colors.bg} ${wh.colors.text} font-bold text-sm border ${wh.colors.border}">${wh.id}</div>
+                                <h2 class="text-3xl font-bold text-saas-text tracking-tight">${wh.name}</h2>
                             </div>
-                            <p class="text-zinc-400 mt-2 font-medium">Independent planning and scheduling</p>
+                            <p class="text-saas-muted mt-2 text-sm font-medium">Independent planning and scheduling</p>
                         </div>
-                        <button onclick="app.openFormModal(null, '${wh.id}')" class="btn-red-noir px-5 py-2.5 rounded-xl font-medium flex items-center gap-2">
-                            <i data-lucide="plus" class="w-5 h-5"></i> Add Shipment
+                        <button onclick="app.openFormModal(null, '${wh.id}')" class="btn-primary px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
+                            <i data-lucide="plus" class="w-4 h-4"></i> Add Shipment
                         </button>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 stagger-2">
-                        <div class="bento-card p-6 border-l-4 border-l-zinc-600">
-                            <p class="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2">Total Active Containers</p>
-                            <p class="text-5xl font-heading font-bold text-white">${total}</p>
+                        <div class="bento-card p-6">
+                            <p class="text-saas-muted text-[11px] font-bold uppercase tracking-wider mb-2">Total Active Containers</p>
+                            <p class="text-5xl font-bold text-saas-text">${total}</p>
                         </div>
-                        <div class="bento-card p-6 border-l-4 border-l-rednoir">
-                            <p class="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2">Today's S.I.</p>
-                            <p class="text-5xl font-heading font-bold text-white">${todayCount}</p>
+                        <div class="bento-card p-6 border-l-4 border-l-saas-text">
+                            <p class="text-saas-muted text-[11px] font-bold uppercase tracking-wider mb-2">Today's S.I.</p>
+                            <p class="text-5xl font-bold text-saas-text">${todayCount}</p>
                         </div>
-                        <div class="bento-card p-6 border-l-4 border-l-blue-500">
-                            <p class="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2">Next 7 Days S.I.</p>
-                            <p class="text-5xl font-heading font-bold text-white">${upcomingCount}</p>
+                        <div class="bento-card p-6">
+                            <p class="text-saas-muted text-[11px] font-bold uppercase tracking-wider mb-2">Next 7 Days S.I.</p>
+                            <p class="text-5xl font-bold text-saas-text">${upcomingCount}</p>
                         </div>
                     </div>
 
                     <div class="bento-card p-6 stagger-3">
-                        <h3 class="text-lg font-heading font-bold text-white mb-5 flex items-center gap-2">
-                            <i data-lucide="file-text" class="w-5 h-5 text-zinc-500"></i> Shipment Records
+                        <h3 class="text-base font-bold text-saas-text mb-5 flex items-center gap-2">
+                            Shipment Records
                         </h3>
                         ${buildTableHTML(whShipments, true)}
                     </div>
@@ -777,7 +780,7 @@
             };
 
             let gridHTML = days.map((dateStr, i) => {
-                if (!dateStr) return `<div class="bg-[#050505] min-h-[120px] border-b border-r border-zinc-800/50"></div>`;
+                if (!dateStr) return `<div class="bg-[#F9FAFB] min-h-[120px] border-b border-r border-saas-border"></div>`;
                 const data = getDayData(dateStr);
                 const isToday = dateStr === todayStr();
                 const dayNum = parseInt(dateStr.split('-')[2], 10);
@@ -788,62 +791,61 @@
                         contentHTML = WAREHOUSES.map(w => {
                             const count = data.byWh[w.id];
                             if (!count) return '';
-                            return `<div class="text-[10px] px-2 py-0.5 mt-1 rounded flex justify-between font-semibold ${w.colors.bg} ${w.colors.text} border ${w.colors.border}">
+                            return `<div class="text-[10px] px-2 py-0.5 mt-1 rounded flex justify-between font-medium ${w.colors.bg} ${w.colors.text} border ${w.colors.border}">
                                 <span>${w.id}</span><span>${count}</span>
                             </div>`;
                         }).join('');
-                        contentHTML += `<div class="text-xs text-center font-bold text-zinc-400 pt-2 border-t border-zinc-800 mt-2 uppercase">Tot: <span class="text-white">${data.total}</span></div>`;
+                        contentHTML += `<div class="text-[10px] text-center font-bold text-saas-muted pt-2 border-t border-saas-border mt-2 uppercase">Total: <span class="text-saas-text">${data.total}</span></div>`;
                     } else {
-                        contentHTML = `<div class="text-center py-2 mt-2 bg-zinc-800 text-white rounded-lg font-bold text-sm shadow-sm border border-zinc-700">${data.total} <span class="text-[10px] font-normal uppercase opacity-70">Cont</span></div>`;
+                        contentHTML = `<div class="text-center py-2 mt-2 bg-saas-control text-saas-text rounded-lg font-bold text-sm border border-saas-border">${data.total} <span class="text-[10px] font-normal uppercase text-saas-muted">Cont</span></div>`;
                     }
                 }
 
                 return `
                     <div onclick="if(${data.total > 0}) app.openDayDetails('${dateStr}')" 
-                         class="bg-[#0a0a0a] min-h-[120px] p-2 border-b border-r border-zinc-800/80 transition-colors relative group ${data.total > 0 ? 'cursor-pointer hover:bg-zinc-900' : ''} ${isToday ? 'bg-rednoir/5 ring-1 ring-inset ring-rednoir/50' : ''}">
-                        ${isToday ? `<div class="absolute top-0 left-0 w-full h-1 bg-rednoir shadow-[0_0_10px_#ef233c]"></div>` : ''}
-                        <div class="text-sm font-bold mb-1.5 ${isToday ? 'text-rednoir' : 'text-zinc-500'}">${dayNum}</div>
+                         class="bg-white min-h-[120px] p-2 border-b border-r border-saas-border transition-colors relative group ${data.total > 0 ? 'cursor-pointer hover:bg-saas-bg' : ''} ${isToday ? 'bg-saas-soft/30 ring-1 ring-inset ring-saas-accent' : ''}">
+                        ${isToday ? `<div class="absolute top-0 left-0 w-full h-1 bg-saas-accent"></div>` : ''}
+                        <div class="text-sm font-semibold mb-1.5 ${isToday ? 'text-saas-text' : 'text-saas-muted'}">${dayNum}</div>
                         <div class="space-y-0.5">${contentHTML}</div>
-                        ${data.total > 0 ? `<div class="absolute inset-0 border border-zinc-600 opacity-0 group-hover:opacity-100 rounded pointer-events-none transition-opacity"></div>` : ''}
                     </div>
                 `;
             }).join('');
 
             return `
-                <div class="space-y-6 stagger-1">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-zinc-800 pb-5 gap-4">
+                <div class="space-y-6 stagger-1 max-w-7xl mx-auto">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end pb-2 gap-4">
                         <div>
-                            <h2 class="text-3xl font-heading font-bold text-white tracking-tight">Workload Calendar</h2>
-                            <p class="text-zinc-400 mt-1 font-medium">Container scheduling based on S.I. Deadline</p>
+                            <h2 class="text-3xl font-bold text-saas-text tracking-tight">Workload Calendar</h2>
+                            <p class="text-saas-muted mt-1 text-sm font-medium">Container scheduling based on S.I. Deadline</p>
                         </div>
-                        <div class="flex items-center gap-3 bg-[#111] p-1.5 rounded-xl border border-zinc-800 shadow-sm">
-                            <label class="text-xs font-bold text-zinc-500 uppercase px-2 tracking-wider">View:</label>
-                            <select onchange="app.changeCalendarMode(this.value)" class="border-none bg-transparent font-medium text-sm focus:ring-0 text-white cursor-pointer outline-none">
+                        <div class="flex items-center gap-2 bg-white p-1 rounded-xl border border-saas-border shadow-sm">
+                            <label class="text-[10px] font-bold text-saas-muted uppercase px-2 tracking-wider">View</label>
+                            <select onchange="app.changeCalendarMode(this.value)" class="border-none bg-saas-control rounded-lg py-1.5 font-medium text-xs focus:ring-0 text-saas-text cursor-pointer outline-none">
                                 <option value="COMBINED" ${state.calendarViewMode === 'COMBINED' ? 'selected' : ''}>All Warehouses</option>
                                 ${WAREHOUSES.map(wh => `<option value="${wh.id}" ${state.calendarViewMode === wh.id ? 'selected' : ''}>${wh.id} Only</option>`).join('')}
                             </select>
                         </div>
                     </div>
 
-                    <div class="bento-card overflow-hidden flex flex-col stagger-2">
-                        <div class="flex justify-between items-center p-5 border-b border-zinc-800 bg-zinc-950">
-                            <h3 class="text-xl font-heading font-bold text-white tracking-tight uppercase">${monthNames[month]} ${year}</h3>
-                            <div class="flex gap-1 bg-[#111] rounded-lg border border-zinc-800 p-1 shadow-sm">
-                                <button onclick="app.changeCalendarMonth(-1)" class="p-1.5 hover:bg-zinc-800 rounded-md text-zinc-400 hover:text-white transition-colors"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                                <button onclick="app.changeCalendarMonth(0)" class="px-4 py-1.5 hover:bg-zinc-800 rounded-md text-zinc-300 font-medium text-sm transition-colors border-x border-zinc-800/50">Today</button>
-                                <button onclick="app.changeCalendarMonth(1)" class="p-1.5 hover:bg-zinc-800 rounded-md text-zinc-400 hover:text-white transition-colors"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                    <div class="bento-card overflow-hidden flex flex-col stagger-2 shadow-sm">
+                        <div class="flex justify-between items-center p-4 border-b border-saas-border bg-white">
+                            <h3 class="text-lg font-bold text-saas-text tracking-tight">${monthNames[month]} ${year}</h3>
+                            <div class="flex gap-1 bg-saas-control rounded-lg p-1 border border-saas-border">
+                                <button onclick="app.changeCalendarMonth(-1)" class="p-1 hover:bg-white rounded text-saas-muted hover:text-saas-text transition-colors shadow-sm"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                                <button onclick="app.changeCalendarMonth(0)" class="px-3 py-1 hover:bg-white rounded text-saas-text font-medium text-xs transition-colors shadow-sm mx-1">Today</button>
+                                <button onclick="app.changeCalendarMonth(1)" class="p-1 hover:bg-white rounded text-saas-muted hover:text-saas-text transition-colors shadow-sm"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
                             </div>
                         </div>
 
                         ${state.calendarViewMode === 'COMBINED' ? `
-                        <div class="flex flex-wrap gap-4 px-5 py-3 border-b border-zinc-800 text-xs font-bold uppercase tracking-wider bg-[#0a0a0a]">
-                            ${WAREHOUSES.map(w => `<div class="flex items-center gap-2"><span class="w-3 h-3 rounded block ${w.colors.bg} border ${w.colors.border}"></span> <span class="text-zinc-400">${w.id}</span></div>`).join('')}
+                        <div class="flex flex-wrap gap-4 px-4 py-2 border-b border-saas-border text-[10px] font-bold uppercase tracking-wider bg-saas-control/50">
+                            ${WAREHOUSES.map(w => `<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded block ${w.colors.bg} border ${w.colors.border}"></span> <span class="text-saas-muted">${w.id}</span></div>`).join('')}
                         </div>
                         ` : ''}
 
-                        <div class="grid grid-cols-7 border-l border-zinc-800">
+                        <div class="grid grid-cols-7 border-l border-saas-border">
                             ${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => `
-                                <div class="bg-zinc-950 py-3 text-center text-[10px] font-bold text-zinc-500 uppercase tracking-widest border-b border-r border-zinc-800">${day}</div>
+                                <div class="bg-white py-2 text-center text-[10px] font-bold text-saas-muted uppercase tracking-wider border-b border-r border-saas-border">${day}</div>
                             `).join('')}
                             ${gridHTML}
                         </div>
@@ -874,71 +876,73 @@
 
             return `
                 <div id="table-wrapper" class="space-y-4">
-                    <div class="flex justify-between items-center bg-zinc-950 p-2 border border-zinc-800 rounded-xl shadow-sm">
+                    <div class="flex justify-between items-center bg-white p-2 border border-saas-border rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
                         <div class="relative w-full max-w-sm">
-                            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 w-4 h-4"></i>
+                            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-saas-muted w-4 h-4"></i>
                             <input type="text" placeholder="Search vessel, line, notes..." 
                                    value="${escapeHTML(state.tableState.searchTerm)}"
                                    oninput="app.handleSearch(this.value)"
                                    onfocus="this.selectionStart = this.selectionEnd = this.value.length"
-                                   class="w-full pl-9 pr-3 py-2 text-sm bg-[#050505] border border-zinc-800 rounded-lg text-white focus:ring-rednoir focus:border-rednoir outline-none transition-shadow" autofocus>
+                                   class="w-full pl-9 pr-3 py-2 text-sm bg-saas-control border border-transparent rounded-lg text-saas-text focus:bg-white focus:border-saas-border focus:ring-1 focus:ring-saas-border outline-none transition-all" autofocus>
                         </div>
                     </div>
 
-                    <div class="overflow-x-auto border border-zinc-800 rounded-xl shadow-sm bg-zinc-900">
-                        <table class="min-w-full divide-y divide-zinc-800 text-sm">
-                            <thead class="bg-zinc-950 text-zinc-500 text-xs uppercase tracking-wider font-bold">
+                    <div class="overflow-x-auto border border-saas-border rounded-xl shadow-sm bg-white">
+                        <table class="min-w-full divide-y divide-saas-border text-sm">
+                            <thead class="bg-saas-control text-saas-muted text-[11px] uppercase tracking-wider font-semibold">
                                 <tr>
                                     ${!hideWarehouse ? `<th class="px-4 py-3.5 text-left">Whs</th>` : ''}
-                                    <th class="px-4 py-3.5 text-left cursor-pointer hover:text-white transition-colors" onclick="app.handleSort('destination')">Destination <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1"></i></th>
-                                    <th class="px-4 py-3.5 text-left cursor-pointer hover:text-white transition-colors" onclick="app.handleSort('shippingLine')">Line <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1"></i></th>
-                                    <th class="px-4 py-3.5 text-left cursor-pointer hover:text-white transition-colors" onclick="app.handleSort('vessel')">Vessel <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1"></i></th>
-                                    <th class="px-4 py-3.5 text-left cursor-pointer hover:text-white transition-colors" onclick="app.handleSort('siDate')">S.I. Date <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1"></i></th>
+                                    <th class="px-4 py-3.5 text-left cursor-pointer hover:text-saas-text transition-colors" onclick="app.handleSort('destination')">Destination <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1"></i></th>
+                                    <th class="px-4 py-3.5 text-left cursor-pointer hover:text-saas-text transition-colors" onclick="app.handleSort('shippingLine')">Line <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1"></i></th>
+                                    <th class="px-4 py-3.5 text-left cursor-pointer hover:text-saas-text transition-colors" onclick="app.handleSort('vessel')">Vessel <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1"></i></th>
+                                    <th class="px-4 py-3.5 text-left cursor-pointer hover:text-saas-text transition-colors" onclick="app.handleSort('siDate')">S.I. Date <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1"></i></th>
                                     <th class="px-4 py-3.5 text-left">Size</th>
-                                    <th class="px-4 py-3.5 text-center cursor-pointer hover:text-white transition-colors" onclick="app.handleSort('containerCount')">Count <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1"></i></th>
+                                    <th class="px-4 py-3.5 text-center cursor-pointer hover:text-saas-text transition-colors" onclick="app.handleSort('containerCount')">Count <i data-lucide="arrow-up-down" class="inline w-3 h-3 ml-1"></i></th>
                                     <th class="px-4 py-3.5 text-right">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-zinc-800 bg-[#0a0a0a]">
-                                ${filtered.length === 0 ? `<tr><td colspan="8" class="px-4 py-12 text-center text-zinc-500 font-medium">No shipments match your criteria.</td></tr>` : 
+                            <tbody class="divide-y divide-saas-border bg-white">
+                                ${filtered.length === 0 ? `<tr><td colspan="8" class="px-4 py-12 text-center text-saas-muted font-medium text-sm">No shipments match your criteria.</td></tr>` : 
                                   filtered.map(s => {
                                       const wh = WAREHOUSES.find(w => w.id === s.warehouse);
                                       const isPastSI = s.siDate && diffDays(s.siDate, todayStr()) < 0;
                                       return `
-                                          <tr class="hover:bg-zinc-900 transition-colors">
-                                              ${!hideWarehouse ? `<td class="px-4 py-3 whitespace-nowrap"><span class="px-2.5 py-1 rounded-md text-[10px] uppercase font-bold tracking-wider ${wh ? wh.colors.tag : 'bg-zinc-800 text-zinc-300'}">${s.warehouse}</span></td>` : ''}
-                                              <td class="px-4 py-3 font-medium text-zinc-300 whitespace-nowrap">${escapeHTML(s.destination || 'Unassigned')}</td>
-                                              <td class="px-4 py-3 font-semibold text-white whitespace-nowrap">${escapeHTML(s.shippingLine)}</td>
-                                              <td class="px-4 py-3 text-zinc-400 whitespace-nowrap font-medium">
+                                          <tr class="hover:bg-saas-control/50 transition-colors">
+                                              ${!hideWarehouse ? `<td class="px-4 py-3 whitespace-nowrap"><span class="px-2 py-1 rounded text-[10px] font-semibold tracking-wider uppercase ${wh ? wh.colors.tag : 'bg-gray-100 text-gray-600'}">${s.warehouse}</span></td>` : ''}
+                                              <td class="px-4 py-3 font-medium text-saas-text whitespace-nowrap">${escapeHTML(s.destination || 'Unassigned')}</td>
+                                              <td class="px-4 py-3 font-medium text-saas-text whitespace-nowrap">${escapeHTML(s.shippingLine)}</td>
+                                              <td class="px-4 py-3 text-saas-muted whitespace-nowrap font-medium">
                                                   <div class="flex items-center gap-2">
                                                       <span>${escapeHTML(s.vessel)}</span>
                                                       ${s.notes && s.notes.trim() !== '' ? `
-                                                      <div class="relative group flex items-center z-10 hover:z-[60]">
-                                                          <i data-lucide="message-square" class="w-4 h-4 text-zinc-500 hover:text-rednoir cursor-pointer transition-colors"></i>
-                                                          <!-- Tooltip Preview -->
-                                                          <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-3 bg-zinc-800 text-xs text-zinc-300 rounded-xl shadow-2xl z-[100] whitespace-normal border border-zinc-700 pointer-events-none text-left font-sans font-normal leading-relaxed">
-                                                              <div class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1 pb-1 border-b border-zinc-700/50">Shipment Note</div>
+                                                      <div class="relative group flex items-center z-10 hover:z-[9999]">
+                                                          <div class="bg-saas-soft rounded-full p-1 border border-saas-accent/20 cursor-pointer">
+                                                            <i data-lucide="message-square" class="w-3.5 h-3.5 text-green-700 transition-colors"></i>
+                                                          </div>
+                                                          <!-- High Z-Index Tooltip Preview -->
+                                                          <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-64 p-3 bg-white text-xs text-saas-text rounded-xl shadow-xl z-[9999] whitespace-normal border border-saas-border pointer-events-none text-left font-sans font-normal leading-relaxed">
+                                                              <div class="text-[10px] font-bold text-saas-muted uppercase tracking-widest mb-1 pb-1 border-b border-saas-border">Shipment Note</div>
                                                               ${escapeHTML(s.notes)}
-                                                              <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-zinc-800 border-b border-r border-zinc-700 rotate-45"></div>
+                                                              <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-b border-r border-saas-border rotate-45"></div>
                                                           </div>
                                                       </div>
                                                       ` : ''}
                                                   </div>
                                               </td>
                                               <td class="px-4 py-3 whitespace-nowrap">
-                                                  <span class="${isPastSI ? 'text-red-400 font-bold bg-red-950/30 px-2 py-1 rounded border border-red-900/50' : 'text-zinc-300 font-medium'}">
+                                                  <span class="${isPastSI ? 'text-red-700 font-bold bg-red-50 px-2 py-1 rounded border border-red-200' : 'text-saas-text font-medium'}">
                                                       ${formatDisplayDate(s.siDate)}
                                                   </span>
                                               </td>
-                                              <td class="px-4 py-3 text-zinc-500 whitespace-nowrap font-medium">${escapeHTML(s.containerSize)}</td>
-                                              <td class="px-4 py-3 text-center font-heading font-bold text-white text-base">${s.containerCount}</td>
+                                              <td class="px-4 py-3 text-saas-muted whitespace-nowrap text-xs font-medium">${escapeHTML(s.containerSize)}</td>
+                                              <td class="px-4 py-3 text-center font-bold text-saas-text text-base">${s.containerCount}</td>
                                               <td class="px-4 py-3 text-right whitespace-nowrap space-x-1">
-                                                  <button onclick="app.openFormModal('${s.id}')" class="text-zinc-500 hover:text-blue-400 p-1.5 rounded hover:bg-blue-950/50 transition-colors" title="Edit"><i data-lucide="edit-2" class="w-4 h-4"></i></button>
+                                                  <button onclick="app.openFormModal('${s.id}')" class="text-saas-muted hover:text-saas-text p-1.5 rounded hover:bg-saas-border transition-colors" title="Edit"><i data-lucide="edit-2" class="w-4 h-4"></i></button>
                                                   ${s.isArchived ? 
-                                                      `<button onclick="app.restoreShipment('${s.id}')" class="text-zinc-500 hover:text-emerald-400 p-1.5 rounded hover:bg-emerald-950/50 transition-colors" title="Restore"><i data-lucide="check-circle" class="w-4 h-4"></i></button>` :
-                                                      `<button onclick="app.archiveShipment('${s.id}')" class="text-zinc-500 hover:text-orange-400 p-1.5 rounded hover:bg-orange-950/50 transition-colors" title="Archive"><i data-lucide="archive" class="w-4 h-4"></i></button>`
+                                                      `<button onclick="app.restoreShipment('${s.id}')" class="text-saas-muted hover:text-saas-text p-1.5 rounded hover:bg-saas-border transition-colors" title="Restore"><i data-lucide="check-circle" class="w-4 h-4"></i></button>` :
+                                                      `<button onclick="app.archiveShipment('${s.id}')" class="text-saas-muted hover:text-saas-text p-1.5 rounded hover:bg-saas-border transition-colors" title="Archive"><i data-lucide="archive" class="w-4 h-4"></i></button>`
                                                   }
-                                                  <button onclick="app.deleteShipment('${s.id}')" class="text-zinc-500 hover:text-rednoir p-1.5 rounded hover:bg-rednoir/10 transition-colors" title="Delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                                                  <button onclick="app.deleteShipment('${s.id}')" class="text-saas-muted hover:text-red-600 p-1.5 rounded hover:bg-red-50 transition-colors" title="Delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                                               </td>
                                           </tr>
                                       `;
@@ -951,7 +955,7 @@
             `;
         }
 
-        // Helper to update just the table without full re-render (maintains focus)
+        // Helper to update just the table without full re-render
         function renderTableBody() {
             const active = state.currentView === 'ARCHIVE' ? state.shipments.filter(s => s.isArchived) : state.shipments.filter(s => !s.isArchived);
             let targetRecords = active;
@@ -984,7 +988,6 @@
             }
         }
 
-
         function renderSIMonitoring(activeShipments) {
             const today = todayStr();
             const past = activeShipments.filter(s => diffDays(s.siDate, today) < 0);
@@ -992,33 +995,33 @@
             const upcoming = activeShipments.filter(s => diffDays(s.siDate, today) > 0 && diffDays(s.siDate, today) <= 7);
             
             return `
-                <div class="space-y-6 stagger-1">
-                    <div class="border-b border-zinc-800 pb-5">
-                        <h2 class="text-3xl font-heading font-bold text-white tracking-tight">S.I. Date Monitoring</h2>
-                        <p class="text-zinc-400 mt-1 font-medium">Track Shipping Instruction deadlines proactively.</p>
+                <div class="space-y-6 stagger-1 max-w-7xl mx-auto">
+                    <div class="pb-2">
+                        <h2 class="text-3xl font-bold text-saas-text tracking-tight">S.I. Date Monitoring</h2>
+                        <p class="text-saas-muted mt-1 text-sm font-medium">Track Shipping Instruction deadlines proactively.</p>
                     </div>
                     
                     <div class="space-y-6">
-                        <div class="bento-card border-red-900/50 bg-[#1a0505] p-6 relative overflow-hidden stagger-2">
-                            <div class="absolute top-0 left-0 w-1 h-full bg-red-600 shadow-[0_0_15px_#dc2626]"></div>
-                            <h3 class="text-lg font-heading font-bold text-red-500 mb-5 flex items-center gap-2">
-                                <i data-lucide="alert-octagon" class="w-5 h-5"></i> Past Due S.I. Dates
+                        <div class="bento-card border-red-200 bg-white p-6 relative overflow-hidden stagger-2">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+                            <h3 class="text-base font-bold text-red-600 mb-5 flex items-center gap-2">
+                                <i data-lucide="alert-octagon" class="w-4 h-4"></i> Past Due S.I. Dates
                             </h3>
                             ${buildTableHTML(past)}
                         </div>
 
-                        <div class="bento-card border-orange-900/50 bg-[#1a0f05] p-6 relative overflow-hidden stagger-2">
-                            <div class="absolute top-0 left-0 w-1 h-full bg-orange-500 shadow-[0_0_15px_#f97316]"></div>
-                            <h3 class="text-lg font-heading font-bold text-orange-500 mb-5 flex items-center gap-2">
-                                <i data-lucide="clock" class="w-5 h-5"></i> S.I. Deadline Today
+                        <div class="bento-card border-orange-200 bg-white p-6 relative overflow-hidden stagger-2">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-orange-400"></div>
+                            <h3 class="text-base font-bold text-orange-600 mb-5 flex items-center gap-2">
+                                <i data-lucide="clock" class="w-4 h-4"></i> S.I. Deadline Today
                             </h3>
                             ${buildTableHTML(todaySI)}
                         </div>
 
-                        <div class="bento-card border-blue-900/50 bg-[#050a1a] p-6 relative overflow-hidden stagger-3">
-                            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500 shadow-[0_0_15px_#3b82f6]"></div>
-                            <h3 class="text-lg font-heading font-bold text-blue-400 mb-5 flex items-center gap-2">
-                                <i data-lucide="calendar" class="w-5 h-5"></i> Approaching within 7 Days
+                        <div class="bento-card border-blue-200 bg-white p-6 relative overflow-hidden stagger-3">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                            <h3 class="text-base font-bold text-blue-600 mb-5 flex items-center gap-2">
+                                <i data-lucide="calendar" class="w-4 h-4"></i> Approaching within 7 Days
                             </h3>
                             ${buildTableHTML(upcoming.sort((a,b) => new Date(a.siDate) - new Date(b.siDate)))}
                         </div>
@@ -1029,45 +1032,45 @@
 
         function renderExportView() {
             return `
-                <div class="space-y-6 max-w-4xl stagger-1">
-                    <div class="border-b border-zinc-800 pb-5">
-                        <h2 class="text-3xl font-heading font-bold text-white tracking-tight">Export & Reports</h2>
-                        <p class="text-zinc-400 mt-1 font-medium">Download workload and scheduling data as CSV.</p>
+                <div class="space-y-6 max-w-5xl mx-auto stagger-1">
+                    <div class="pb-2">
+                        <h2 class="text-3xl font-bold text-saas-text tracking-tight">Export & Reports</h2>
+                        <p class="text-saas-muted mt-1 text-sm font-medium">Download workload and scheduling data as CSV.</p>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-2">
                         <div class="bento-card p-6">
-                            <div class="w-12 h-12 bg-rednoir/10 rounded-xl flex items-center justify-center text-rednoir mb-5 border border-rednoir/20">
-                                <i data-lucide="download" class="w-6 h-6"></i>
+                            <div class="w-10 h-10 bg-saas-control rounded-lg flex items-center justify-center text-saas-text mb-4 border border-saas-border">
+                                <i data-lucide="download" class="w-5 h-5"></i>
                             </div>
-                            <h3 class="text-lg font-heading font-bold text-white mb-2">Export Active Shipments</h3>
-                            <p class="text-sm text-zinc-400 mb-6 min-h-[40px]">Download a complete CSV spreadsheet of all active records across all warehouses.</p>
-                            <button onclick="app.exportCSV(state.shipments.filter(s => !s.isArchived), 'All_Active_Shipments')" class="btn-red-noir w-full py-3 font-medium rounded-xl flex justify-center items-center gap-2">
+                            <h3 class="text-base font-bold text-saas-text mb-2">Export Active Shipments</h3>
+                            <p class="text-xs text-saas-muted mb-6 min-h-[40px]">Download a complete CSV spreadsheet of all active records across all warehouses.</p>
+                            <button onclick="app.exportCSV(state.shipments.filter(s => !s.isArchived), 'All_Active_Shipments')" class="btn-primary w-full py-2.5 text-sm font-medium rounded-xl flex justify-center items-center gap-2">
                                 <i data-lucide="file-text" class="w-4 h-4"></i> Export Active File
                             </button>
                         </div>
 
                         <div class="bento-card p-6">
-                            <div class="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center text-zinc-400 mb-5 border border-zinc-700">
-                                <i data-lucide="archive" class="w-6 h-6"></i>
+                            <div class="w-10 h-10 bg-saas-control rounded-lg flex items-center justify-center text-saas-text mb-4 border border-saas-border">
+                                <i data-lucide="archive" class="w-5 h-5"></i>
                             </div>
-                            <h3 class="text-lg font-heading font-bold text-white mb-2">Export Historical Archive</h3>
-                            <p class="text-sm text-zinc-400 mb-6 min-h-[40px]">Download a CSV of all historical, archived records.</p>
-                            <button onclick="app.exportCSV(state.shipments.filter(s => s.isArchived), 'Archived_Shipments')" class="w-full py-3 bg-zinc-900 border border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white font-medium rounded-xl shadow-sm transition-colors flex justify-center items-center gap-2">
+                            <h3 class="text-base font-bold text-saas-text mb-2">Export Historical Archive</h3>
+                            <p class="text-xs text-saas-muted mb-6 min-h-[40px]">Download a CSV of all historical, archived records.</p>
+                            <button onclick="app.exportCSV(state.shipments.filter(s => s.isArchived), 'Archived_Shipments')" class="btn-secondary w-full py-2.5 text-sm font-medium rounded-xl flex justify-center items-center gap-2">
                                 <i data-lucide="database" class="w-4 h-4"></i> Export Archive File
                             </button>
                         </div>
                     </div>
 
-                    <h3 class="text-xl font-heading font-bold text-white pt-6 stagger-3">Export by Warehouse</h3>
+                    <h3 class="text-lg font-bold text-saas-text pt-4 stagger-3">Export by Warehouse</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 stagger-3">
                         ${WAREHOUSES.map(w => `
                             <div class="bento-card p-5 flex flex-col items-center text-center">
-                                <div class="w-12 h-12 rounded-xl mb-4 flex items-center justify-center ${w.colors.bg} ${w.colors.text} border ${w.colors.border}">
-                                    <i data-lucide="package" class="w-6 h-6"></i>
+                                <div class="w-10 h-10 rounded-lg mb-3 flex items-center justify-center ${w.colors.bg} ${w.colors.text} border ${w.colors.border}">
+                                    <i data-lucide="package" class="w-5 h-5"></i>
                                 </div>
-                                <h4 class="font-heading font-bold text-white mb-5">${w.name}</h4>
-                                <button onclick="app.exportCSV(state.shipments.filter(s => !s.isArchived && s.warehouse === '${w.id}'), '${w.id}_Shipments')" class="w-full py-2.5 bg-zinc-900 border border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white text-sm font-medium rounded-lg transition-colors">
+                                <h4 class="font-bold text-sm text-saas-text mb-4">${w.name}</h4>
+                                <button onclick="app.exportCSV(state.shipments.filter(s => !s.isArchived && s.warehouse === '${w.id}'), '${w.id}_Shipments')" class="btn-secondary w-full py-2 text-xs font-medium rounded-lg">
                                     Export ${w.id}
                                 </button>
                             </div>
@@ -1096,10 +1099,10 @@
                 html = renderSIMonitoring(activeShipments);
             } else if (state.currentView === 'ARCHIVE') {
                 html = `
-                    <div class="space-y-6 stagger-1">
-                        <div class="border-b border-zinc-800 pb-5">
-                            <h2 class="text-3xl font-heading font-bold text-white tracking-tight">Historical Archive</h2>
-                            <p class="text-zinc-400 mt-1 font-medium">Archived records are excluded from active calculations and workload planning.</p>
+                    <div class="space-y-6 stagger-1 max-w-7xl mx-auto">
+                        <div class="pb-2">
+                            <h2 class="text-3xl font-bold text-saas-text tracking-tight">Historical Archive</h2>
+                            <p class="text-saas-muted mt-1 text-sm font-medium">Archived records are excluded from active calculations and workload planning.</p>
                         </div>
                         <div class="bento-card p-6 stagger-2">
                             ${buildTableHTML(archivedShipments, false)}
